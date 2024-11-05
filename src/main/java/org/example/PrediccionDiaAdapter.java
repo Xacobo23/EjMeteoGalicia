@@ -3,18 +3,22 @@ package org.example;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class PrediccionDiaAdapter implements JsonSerializer<PrediccionDia>, JsonDeserializer<PrediccionDia> {
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     @Override
     public PrediccionDia deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         PrediccionDia prediccionDia = new PrediccionDia();
 
-        prediccionDia.setNivelAviso(jsonObject.get("nivelAviso").getAsByte());
+        prediccionDia.setNivelAviso(jsonObject.get("nivelAviso").isJsonNull() ? 0 : jsonObject.get("nivelAviso").getAsInt());
 
-        prediccionDia.setDataPredivion(jsonObject.get("dataPredicion").getAsString());
+        prediccionDia.setDataPredivion(LocalDateTime.parse( jsonObject.get("dataPredicion").getAsString(), formatter));
 
         prediccionDia.settMin(jsonObject.get("tMin").getAsInt());
 
@@ -70,7 +74,7 @@ public class PrediccionDiaAdapter implements JsonSerializer<PrediccionDia>, Json
 
         JsonObject jsonObject = new JsonObject();
 
-        jsonObject.addProperty("dataPredicion", prediccionDia.getDataPredivion());
+        jsonObject.addProperty("dataPredicion", prediccionDia.getDataPredivion().format(formatter));
         jsonObject.addProperty("nivelAviso", prediccionDia.getNivelAviso());
         jsonObject.addProperty("tMax", prediccionDia.gettMax());
         jsonObject.addProperty("tMin", prediccionDia.gettMin());
@@ -81,7 +85,14 @@ public class PrediccionDiaAdapter implements JsonSerializer<PrediccionDia>, Json
         jsonCeo.addProperty("tarde", prediccionDia.getCeo().getTarde());
         jsonCeo.addProperty("noite", prediccionDia.getCeo().getNoite());
 
-        jsonObject.add("ceo", jsonCeo);
+        jsonObject.add("Estado do ceo", jsonCeo);
+
+        JsonObject jsonChoiva = new JsonObject();
+        jsonChoiva.addProperty("manha", prediccionDia.getpChoiva().getManha());
+        jsonChoiva.addProperty("tarde", prediccionDia.getpChoiva().getTarde());
+        jsonChoiva.addProperty("noite", prediccionDia.getpChoiva().getNoite());
+
+        jsonObject.add("Probabilidade de choiva", jsonChoiva);
 
         return jsonObject;
     }

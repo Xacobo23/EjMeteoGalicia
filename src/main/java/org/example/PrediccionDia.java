@@ -1,10 +1,12 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class PrediccionDia {
     private Ceo ceo;
-    private String dataPredivion;
+    private LocalDateTime dataPredivion;
     private int nivelAviso;
     private PChoiva pChoiva;
     private int tMax;
@@ -25,11 +27,11 @@ public class PrediccionDia {
         this.ceo = ceo;
     }
 
-    public String getDataPredivion() {
+    public LocalDateTime getDataPredivion() {
         return dataPredivion;
     }
 
-    public void setDataPredivion(String dataPredivion) {
+    public void setDataPredivion(LocalDateTime dataPredivion) {
         this.dataPredivion = dataPredivion;
     }
 
