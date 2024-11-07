@@ -45,10 +45,16 @@ public class Prediccion {
 
     @Override
     public String toString() {
-        return "Prediccion{" +
-                "idConcello=" + idConcello +
-                ", listPred=" + listPred +
-                ", nomeConcello='" + nomeConcello + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Prediccion " +nomeConcello+" ["+idConcello+"]\n");
+
+        listPred.forEach(prediccionDia -> sb
+                .append("-----------------------------------------------------------------------------------------------\n")
+                .append(prediccionDia)
+        );
+
+        sb.append("-----------------------------------------------------------------------------------------------\n");
+
+        return  sb.toString();
     }
 }

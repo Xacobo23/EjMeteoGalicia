@@ -21,36 +21,16 @@ public class Main {
                 .setPrettyPrinting()
                 .create();
 
-//        PrediccionDia p = new PrediccionDia();
-//
-//        PrediccionDia p1 =gson.fromJson(new JsonReader(new InputStreamReader(new FileInputStream(new File("./src/prediccion.json")))), PrediccionDia.class);
-//        System.out.println("p1 = " + p1);
-//
-//        String json = gson.toJson(p1);
-//        System.out.println("json = " + json);
-
-        
         InputStream inputURL = new URI(URL).toURL().openConnection().getInputStream();
 
         BufferedReader is = new BufferedReader(new InputStreamReader(inputURL));
-        
-//        String inputLine;
-//        StringBuilder content = new StringBuilder();
-//        while ((inputLine = is.readLine()) != null) {
-//            content.append(inputLine);
-//        }
-//        is.close();
-        
 
 
         Prediccion p = gson.fromJson(new JsonReader(is), Prediccion.class);
-        System.out.println("p = " + p);
-
-//        System.out.println(content);
+        System.out.println(p);
         
-        
-        
-        
+        String json = gson.toJson(p);
+        System.out.println("json = " + json);
 
     }
 }

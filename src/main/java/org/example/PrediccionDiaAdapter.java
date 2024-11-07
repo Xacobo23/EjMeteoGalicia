@@ -94,6 +94,22 @@ public class PrediccionDiaAdapter implements JsonSerializer<PrediccionDia>, Json
 
         jsonObject.add("Probabilidade de choiva", jsonChoiva);
 
+        JsonObject jsonMaxFranxa = new JsonObject();
+        jsonMaxFranxa.addProperty("manha", prediccionDia.gettMaxFranxa().getManha());
+        jsonMaxFranxa.addProperty("tarde", prediccionDia.gettMaxFranxa().getTarde());
+        jsonMaxFranxa.addProperty("noite", prediccionDia.gettMaxFranxa().getNoite());
+
+        jsonObject.add("Temperaturas máximas", jsonMaxFranxa);
+
+        JsonObject jsonMinFranxa = new JsonObject();
+        jsonMinFranxa.addProperty("manha", prediccionDia.gettMinFranxa().getManha());
+        jsonMinFranxa.addProperty("tarde", prediccionDia.gettMinFranxa().getTarde());
+        jsonMinFranxa.addProperty("noite", prediccionDia.gettMinFranxa().getNoite());
+
+        jsonObject.add("Temperaturas mínimas", jsonMinFranxa);
+
+
+
         return jsonObject;
     }
 }

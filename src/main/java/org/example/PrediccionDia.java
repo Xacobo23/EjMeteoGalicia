@@ -1,8 +1,6 @@
 package org.example;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class PrediccionDia {
     private Ceo ceo;
@@ -101,207 +99,43 @@ public class PrediccionDia {
 
     @Override
     public String toString() {
-        return "PrediccionDia{" +
-                "ceo=" + ceo +
-                ", dataPredivion='" + dataPredivion + '\'' +
-                ", nivelAviso=" + nivelAviso +
-                ", pChoiva=" + pChoiva +
-                ", tMax=" + tMax +
-                ", tMin=" + tMin +
-                ", tMaxFranxa=" + tMaxFranxa +
-                ", tMinFranxa=" + tMinFranxa +
-                ", uvMax=" + uvMax +
-                ", vento=" + vento +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb
+                .append(dataPredivion).append(" (aviso: ").append(nivelAviso)
+                .append("), Máxima: ").append(tMax)
+                .append(", Mínima: ").append(tMin)
+                .append(", Índice ultravioleta máx: ")
+                .append(uvMax)
+                .append(System.lineSeparator())
+
+                .append("Ceo: ").append(ceo).append(System.lineSeparator())
+                .append("Choiva: ").append(pChoiva).append(System.lineSeparator())
+                .append("Temperaturas máximas: ").append(tMaxFranxa).append(System.lineSeparator())
+                .append("Temperaturas máximas: ").append(tMinFranxa).append(System.lineSeparator())
+                .append("Vento: ").append(vento).append(System.lineSeparator());
+
+        return sb.toString();
     }
 }
 
-class Ceo{
-    private int manha;
-    private int noite;
-    private int tarde;
-
-    public Ceo() {
-    }
-
+class Ceo extends PeriodoMTN {
     public Ceo(int manha, int noite, int tarde) {
-        this.manha = manha;
-        this.noite = noite;
-        this.tarde = tarde;
-    }
-
-    public int getManha() {
-        return manha;
-    }
-
-    public void setManha(int manha) {
-        this.manha = manha;
-    }
-
-    public int getNoite() {
-        return noite;
-    }
-
-    public void setNoite(int noite) {
-        this.noite = noite;
-    }
-
-    public int getTarde() {
-        return tarde;
-    }
-
-    public void setTarde(int tarde) {
-        this.tarde = tarde;
-    }
-
-    @Override
-    public String toString() {
-        return "Ceo{" +
-                "manha=" + manha +
-                ", noite=" + noite +
-                ", tarde=" + tarde +
-                '}';
+        super(manha, noite, tarde);
     }
 }
-class PChoiva{
-    private int manha;
-    private int noite;
-    private int tarde;
-
-    public PChoiva() {
-    }
-
+class PChoiva extends PeriodoMTN {
     public PChoiva(int manha, int noite, int tarde) {
-        this.manha = manha;
-        this.noite = noite;
-        this.tarde = tarde;
-    }
-
-    public int getManha() {
-        return manha;
-    }
-
-    public void setManha(int manha) {
-        this.manha = manha;
-    }
-
-    public int getNoite() {
-        return noite;
-    }
-
-    public void setNoite(int noite) {
-        this.noite = noite;
-    }
-
-    public int getTarde() {
-        return tarde;
-    }
-
-    public void setTarde(int tarde) {
-        this.tarde = tarde;
-    }
-
-    @Override
-    public String toString() {
-        return "PChoiva{" +
-                "manha=" + manha +
-                ", noite=" + noite +
-                ", tarde=" + tarde +
-                '}';
+        super(manha, noite, tarde);
     }
 }
-class Franxa{
-    private int manha;
-    private int noite;
-    private int tarde;
-
-    public Franxa() {
-    }
-
+class Franxa extends PeriodoMTN {
     public Franxa(int manha, int noite, int tarde) {
-        this.manha = manha;
-        this.noite = noite;
-        this.tarde = tarde;
-    }
-
-    public int getManha() {
-        return manha;
-    }
-
-    public void setManha(int manha) {
-        this.manha = manha;
-    }
-
-    public int getNoite() {
-        return noite;
-    }
-
-    public void setNoite(int noite) {
-        this.noite = noite;
-    }
-
-    public int getTarde() {
-        return tarde;
-    }
-
-    public void setTarde(int tarde) {
-        this.tarde = tarde;
-    }
-
-    @Override
-    public String toString() {
-        return "Franxa{" +
-                "manha=" + manha +
-                ", noite=" + noite +
-                ", tarde=" + tarde +
-                '}';
+        super(manha, noite, tarde);
     }
 }
-class Vento{
-    private int manha;
-    private int noite;
-    private int tarde;
-
-    public Vento() {
-    }
-
+class Vento extends PeriodoMTN {
     public Vento(int manha, int noite, int tarde) {
-        this.manha = manha;
-        this.noite = noite;
-        this.tarde = tarde;
-    }
-
-    public int getManha() {
-        return manha;
-    }
-
-    public void setManha(int manha) {
-        this.manha = manha;
-    }
-
-    public int getNoite() {
-        return noite;
-    }
-
-    public void setNoite(int noite) {
-        this.noite = noite;
-    }
-
-    public int getTarde() {
-        return tarde;
-    }
-
-    public void setTarde(int tarde) {
-        this.tarde = tarde;
-    }
-
-    @Override
-    public String toString() {
-        return "Vento{" +
-                "manha=" + manha +
-                ", noite=" + noite +
-                ", tarde=" + tarde +
-                '}';
+        super(manha, noite, tarde);
     }
 }
 
